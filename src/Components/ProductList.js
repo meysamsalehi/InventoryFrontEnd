@@ -43,7 +43,7 @@ const ProductList = () => {
               <span className="mr-3">{product.title}</span>
             </div>
             <div className="flex justify-start items-center gap-x-3 w-3/12">
-              <span className="bg-slate-200 w-5 h-5 rounded-full flex flex-row justify-center items-center">
+              <span className="bg-slate-200 w-6 h-6 rounded-full flex flex-row justify-center items-center">
                 {product.quantity}
               </span>
               <span onClick={() => dispatch({ type: "increment", id: product.id })}>

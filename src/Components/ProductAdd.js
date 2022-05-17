@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { useFormik } from "formik";
 import * as yup from "yup";
 import { useProducts, useProductsAction } from "./Providers/InventoryProvider";
+import Select from "../Common/Select";
 
 const ProductAdd = () => {
   const product = useProducts();
@@ -18,16 +19,8 @@ const ProductAdd = () => {
     quantity: "",
   };
 
-  const sss = {
-    id: "2",
-    title: "ریکت",
-    category: "سس",
-    quantity: "10",
-  };
-
   const onSubmit = (values) => {
     dispatch({ type: "add", values });
-    
   };
 
   const requiredMessage = "ورود مقدار الزامی است";
@@ -40,7 +33,7 @@ const ProductAdd = () => {
       .typeError(justNumberMessage)
       .positive("age must be greater than zero")
       .required(requiredMessage),
-    // email: yup.string().email("ایمیا را وارد کنید").required(),
+    category: yup.string().required(requiredMessage),
     // gender: yup.string().required(),
     // nationality: yup.string().required(),
   });
@@ -94,7 +87,7 @@ const ProductAdd = () => {
           </div>
           <div className="flex flex-row w-full gap-x-2">
             <div className="w-1/2">
-              <Input label="دسته بندی" formik={formik} id="category" name="category" />
+              <Select label="دسته بندی" formik={formik} id="category" name="category" />
             </div>
           </div>
 
@@ -102,8 +95,9 @@ const ProductAdd = () => {
             <SubmitBtn isValid={!formik.isValid} />
 
             <button
-              type="can"
-              className="bg-rose-500 px-4 py-2 border-0 rounded-xl text-white"
+              type="reset"
+              onClick={(e) => formik.resetForm()}
+              className="bg-rose-500 px-20 py-2 border-0 rounded-xl text-white"
             >
               لفو
             </button>
