@@ -11,7 +11,7 @@ const Input = ({ name, label, formik, type = "text" }) => {
         type={type}
         className={
           formik.errors[name] && formik.touched[name]
-            ? "bg-red-200 px-3 py-2 border border-slate-200 rounded-xl text-sm placeholder-white "
+            ? "bg-red-100 px-3 py-2 border border-slate-200 rounded-xl text-sm placeholder-white "
             : "bg-transparent px-3 py-2 border border-slate-200 rounded-xl text-sm"
         }
         placeholder={`${label} را وارد نمائید`}
