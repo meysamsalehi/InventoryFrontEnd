@@ -5,9 +5,9 @@
 <g clip-path="url(#clip0)">
 <rect x="33.0667" y="35.2" width="19.2" height="10.6667" rx="5" fill="white"/>
 <rect x="33.0667" y="35.2" width="19.2" height="10.6667" rx="5" fill="url(#paint1_linear)"/>
-<path fill-rule="evenodd" clip-rule="evenodd" d="M41.6 35.2H45.8666L43.7333 45.8667H39.4666L41.6 35.2Z" fill="#2BD1FF" fill-opacity="0.541275"/>
-<path fill-rule="evenodd" clip-rule="evenodd" d="M33.0666 35.2H37.3333L35.2 45.8667H30.9333L33.0666 35.2Z" fill="#2BD1FF" fill-opacity="0.541275"/>
-<path fill-rule="evenodd" clip-rule="evenodd" d="M50.1333 35.2H54.4L52.2666 45.8667H48L50.1333 35.2Z" fill="#2BD1FF" fill-opacity="0.541275"/>
+<path fillRule="evenodd" clipRule="evenodd" d="M41.6 35.2H45.8666L43.7333 45.8667H39.4666L41.6 35.2Z" fill="#2BD1FF" fill-opacity="0.541275"/>
+<path fillRule="evenodd" clipRule="evenodd" d="M33.0666 35.2H37.3333L35.2 45.8667H30.9333L33.0666 35.2Z" fill="#2BD1FF" fill-opacity="0.541275"/>
+<path fillRule="evenodd" clipRule="evenodd" d="M50.1333 35.2H54.4L52.2666 45.8667H48L50.1333 35.2Z" fill="#2BD1FF" fill-opacity="0.541275"/>
 </g>
 </g>
 <defs>

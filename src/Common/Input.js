@@ -1,16 +1,22 @@
-const Input = ({ placeholder, name, type }) => {
+const Input = ({ name, label, formik, type = "text" }) => {
   return (
-
-  
     <div className="flex flex-col justify-center gap-y-2">
-      <label for={name}>{placeholder}*</label>
+      <label htmlFor={name}>{label}*</label>
+
+      {/* // خط پایین معادل همین است */}
+      {/* <input type={type} id={name} value={formik.values[name]}  onBlur={formik.handleBlur}    onChange={formik.handleChange} name={name}/> */}
       <input
         id={name}
         name={name}
-        type={type || "text"}
+        type={type}
         className="bg-transparent px-3 py-2 border border-slate-200 rounded-xl text-sm"
-        placeholder={placeholder}
+        placeholder={`${label} را وارد نمائید`}
+        {...formik.getFieldProps(name)}
       />
+
+      {formik.errors[name] && formik.touched[name] && (
+        <span className="text-rose-500 text-xs mr-2">{formik.errors[name]}</span>
+      )}
     </div>
   );
 };

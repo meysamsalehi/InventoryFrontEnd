@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./App";
+import FormikC from "./FormikC";
 import reportWebVitals from "./reportWebVitals";
 import Inventory from "./Inventory";
 
@@ -10,6 +11,8 @@ root.render(
   <React.StrictMode>
     {/* <App /> */}
     <Inventory />
+    */}
+    {/* <FormikC /> */}
   </React.StrictMode>,
 );
 
