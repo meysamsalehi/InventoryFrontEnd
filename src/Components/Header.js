@@ -1,8 +1,8 @@
-import logo from './../logo.svg';
+import logo from "./../logo.svg";
 
 const Header = () => {
   return (
-    <header className="flex flex-row justify-center align-items border-b border-slate-100 py-4">
+    <header className="flex flex-row justify-center align-items border-b border-slate-100 py-4 mb-4">
       <div className="basis-1/12 flex justify-center items-center">
         <img src={logo}></img>
       </div>

@@ -1,7 +1,7 @@
-import delivered from './../img/status-delivered.svg';
-import processing from './../img/status-processing.svg';
-import returned from './../img/status-returned.svg';
-import ProductAdd from './ProductAdd';
+import delivered from "./../img/status-delivered.svg";
+import processing from "./../img/status-processing.svg";
+import returned from "./../img/status-returned.svg";
+import ProductAdd from "./ProductAdd";
 
 const MainContent = () => {
   return (

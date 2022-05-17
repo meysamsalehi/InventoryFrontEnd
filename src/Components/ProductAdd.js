@@ -5,14 +5,6 @@ const ProductAdd = () => {
   return (
     <div className=" border border-slate-200 rounded-lg flex flex-col justify-between items-between p-4 gap-y-6">
       <div className="flex justify-between items-center">
-        <div className="text-lg border-b-4  border-red-400"> فرم ثبت محصول در انبار</div>
-        <div className="text-sm flex flex-row justify-between items-center text-cyan-500">
-          <button className="bg-green-500 rounded-xl px-3 py-2 text-slate-100 text-md">
-            ثبت محصول
-          </button>
-        </div>
-      </div>
-      <div className="flex justify-between items-center">
         <div className="flex justify-between items-center">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -26,40 +18,37 @@ const ProductAdd = () => {
               clip-rule="evenodd"
             />
           </svg>
-          <span>عنوان محصول</span>
+          <span className="text-lg">عنوان محصول</span>
         </div>
         <div className="flex justify-between items-center">
-          مشاهده همه
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="h-6 w-6 basis-2/12"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-            strokeWidth={2}
-          >
-            <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
-          </svg>
+          <button className="bg-green-500 rounded-xl px-3 py-2 text-slate-100 text-sm">
+            ثبت محصول
+          </button>
         </div>
       </div>
 
-      <form className="w-1/2">
-        <Input placeholder="نام محصول را وارد نمائید" name="product-title" />
-
-        <Input
-          placeholder="تعداد موجودی اولیه محصول را وارد نمائید"
-          name="product-quantity"
-          type="number"
-        />
+      <form className="flex flex-col gap-y-6">
+        <div className="flex flex-row w-full gap-x-2">
+          <div className="w-1/2">
+            <Input placeholder="نام محصول را وارد نمائید" name="product-title" />
+          </div>
+          <div className="w-1/2">
+            <Input
+              placeholder="تعداد موجودی اولیه محصول را وارد نمائید"
+              name="product-quantity"
+              type="number"
+            />
+          </div>
+        </div>
 
         <Input placeholder="توضیحات محصول را وارد نمائید" name="product-description" />
 
-        <div className="flex justify-between items-center">
+        <div className="flex justify-start items-center gap-x-3">
           <SubmitBtn />
 
           <button
             type="can"
-            className="bg-rose-500 px-3 py-2 border-0 rounded-xl w-1/2 text-white"
+            className="bg-rose-500 px-4 py-2 border-0 rounded-xl text-white"
           >
             لفو
           </button>

@@ -1,5 +1,7 @@
 const Input = ({ placeholder, name, type }) => {
   return (
+
+  
     <div className="flex flex-col justify-center gap-y-2">
       <label for={name}>{placeholder}*</label>
       <input

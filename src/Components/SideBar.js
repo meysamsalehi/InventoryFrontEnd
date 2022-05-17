@@ -1,6 +1,6 @@
 const SideBar = () => {
   return (
-    <div className="basis-3/12 border border-slate-200 rounded-lg">
+    <div className="basis-3/12 border border-slate-200 rounded-lg max-h-72">
       <div className="flex justify-between items-center p-4 gap-x-2">
         <div className="basis-2/12">
           <div className="w-12 h-12 bg-stone-200 rounded-full flex justify-center items-center">
