@@ -1,8 +1,6 @@
-const Select = ({ name, label, formik }) => {
-  const options = [
-    { title: "تحت وب", value: "web" },
-    { title: "شبکه", value: "net" },
-  ];
+const Select = ({ name, label, formik, selectOption }) => {
+  console.log("form", formik.initialValues.id);
+
   return (
     <>
       <select
@@ -11,11 +9,13 @@ const Select = ({ name, label, formik }) => {
         name={name}
         className="bg-transparent px-3 py-2 border border-slate-200 rounded-xl text-sm w-full"
       >
-        <option selected value="">
-          انتخاب کنید
-        </option>
-        {options.map((options) => {
-          return <option value={options.value}>{options.title}</option>;
+        <option>انتخاب کنید</option>
+        {selectOption.map((options) => {
+          return (
+            <option key={options.id} value={options.value}>
+              {options.label}
+            </option>
+          );
         })}
       </select>
       {formik.errors[name] && formik.touched[name] && (

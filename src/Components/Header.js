@@ -5,7 +5,7 @@ const Header = () => {
   const products = useProducts();
   const dispatch = useProductsAction();
 
-  console.log(products);
+  // console.log(products);
 
   return (
     <div className="max-w-screen-2xl  py-4 mb-4 mx-auto">

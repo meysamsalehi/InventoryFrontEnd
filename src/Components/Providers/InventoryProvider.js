@@ -3,9 +3,9 @@ const ProductsContext = React.createContext(); //state
 const ProductsContextDispatcher = React.createContext(); //setState
 
 const initialState = [
-  { title: "لپ تاپ ایسوس", category: "کالای دیجیتال", id: 1, quantity: 1 },
-  { title: "گوشی هوشمند سامسونگ", category: "موبایل", id: 2, quantity: 1 },
-  { title: "هندزفری", category: "لوازم جانبی", id: 3, quantity: 1 },
+  { title: "لپ تاپ ایسوس", category: "mobile", id: 1, quantity: 1 },
+  { title: "گوشی هوشمند سامسونگ", category: "mobile", id: 2, quantity: 1 },
+  { title: "هندزفری", category: "web", id: 3, quantity: 1 },
 ];
 
 const reducer = (state, action) => {
