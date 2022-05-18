@@ -2,12 +2,11 @@ import delivered from "./../img/status-delivered.svg";
 import processing from "./../img/status-processing.svg";
 import returned from "./../img/status-returned.svg";
 import ProductAdd from "./ProductAdd";
-import ProductList from "./ProductList";
 
 const MainContent = () => {
   return (
     <div className="basis-8/12 flex flex-col justify-start gap-y-5 ">
-      <div className="max-h-10 border border-slate-200 rounded-lg flex justify-between items-center p-4">
+            <div className="max-h-10 border border-slate-200 rounded-lg flex justify-between items-center p-4">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           className="h-6 w-6 basis-1/12 flex justify-start"
@@ -80,8 +79,6 @@ const MainContent = () => {
           </div>
         </div>
       </div>
-
-      <ProductList />
 
       <ProductAdd />
     </div>

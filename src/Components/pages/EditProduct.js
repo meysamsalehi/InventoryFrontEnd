@@ -1,27 +1,29 @@
-import Input from "../Common/Input";
-import SubmitBtn from "../Common/SubmitBnt";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useFormik } from "formik";
 import * as yup from "yup";
-import { useProducts, useProductsAction } from "./Providers/InventoryProvider";
-import Select from "../Common/Select";
+import Input from "./../../Common/Input";
+import Select from "./../../Common/Select";
+import SubmitBtn from "./../../Common/SubmitBnt";
+import { useProducts } from "../Providers/InventoryProvider";
+import { useProductsAction } from "./../Providers/InventoryProvider";
 
-const EditProduct = ({ editPro }) => {
+const EditProduct = () => {
   const product = useProducts();
   const dispatch = useProductsAction();
 
   const { register, handleSubmit } = useState();
 
-  const initialValuesFormik = editPro;
+  const initialValuesFormik = {
+    id: null,
+    title: "",
+    category: false,
+    quantity: "",
+  };
 
   const selectOption = [
     { id: 1, value: "web", label: "وب" },
     { id: 2, value: "mobile", label: "موبایل" },
   ];
-
-  // if (editPro.id) {
-  //   initialValuesFormik = editPro;
-  // }
 
   const onSubmit = (values) => {
     dispatch({ type: "add", values });

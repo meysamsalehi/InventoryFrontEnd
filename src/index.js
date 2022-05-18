@@ -5,15 +5,15 @@ import App from "./App";
 import FormikC from "./FormikC";
 import reportWebVitals from "./reportWebVitals";
 import Inventory from "./Inventory";
+import { BrowserRouter } from "react-router-dom";
+import Navigation from "./Components/Navigation";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <React.StrictMode>
-    {/* <App /> */}
+  <BrowserRouter>
     <Inventory />
-    */}
-    {/* <FormikC /> */}
-  </React.StrictMode>,
+    <Navigation />
+  </BrowserRouter>,
 );
 
 // If you want to start measuring performance in your app, pass a function
