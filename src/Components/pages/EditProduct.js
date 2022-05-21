@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useFormik } from "formik";
 import * as yup from "yup";
 import Input from "./../../Common/Input";
@@ -6,24 +6,25 @@ import Select from "./../../Common/Select";
 import SubmitBtn from "./../../Common/SubmitBnt";
 import { useProducts } from "../Providers/InventoryProvider";
 import { useProductsAction } from "./../Providers/InventoryProvider";
+import { useParams, useLocation } from "react-router-dom";
+import selectOption from "./../../Common/SelectedOption";
 
-const EditProduct = () => {
+const EditProduct = (props) => {
   const product = useProducts();
   const dispatch = useProductsAction();
+
+  const params = useParams();
+  const location = useLocation();
+  const { myState } = location.state;
 
   const { register, handleSubmit } = useState();
 
   const initialValuesFormik = {
-    id: null,
-    title: "",
-    category: false,
-    quantity: "",
+    id: myState.product.id,
+    title: myState.product.title,
+    category: myState.product.category,
+    quantity: myState.product.quantity,
   };
-
-  const selectOption = [
-    { id: 1, value: "web", label: "وب" },
-    { id: 2, value: "mobile", label: "موبایل" },
-  ];
 
   const onSubmit = (values) => {
     dispatch({ type: "add", values });
@@ -53,6 +54,8 @@ const EditProduct = () => {
 
   return (
     <div>
+      <p>this is a {params.id} id</p>
+
       <form onSubmit={formik.handleSubmit} className="flex flex-col gap-y-6">
         <div className="flex flex-row w-full gap-x-2">
           <div className="w-1/2">

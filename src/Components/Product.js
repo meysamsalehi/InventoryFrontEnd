@@ -1,6 +1,7 @@
 import { useProducts, useProductsAction } from "./Providers/InventoryProvider";
 import { useState } from "react";
-import { Navigate } from "react-router-dom";
+import { Navigate, NavLink } from "react-router-dom";
+import selectOption from "./../Common/SelectedOption";
 
 const Product = ({ product }) => {
   const products = useProducts();
@@ -93,15 +94,22 @@ const Product = ({ product }) => {
 
         <div className="flex justify-start items-center w-3/12">
           <span>
-            <span>دسته بندی: {product.category}</span>
+            <span>
+              دسته بندی:
+              {selectOption.find((c) => c.value === product.category).label}
+            </span>
           </span>
         </div>
 
         <div className="flex justify-between items-center">
-          <div
-            onClick={() => <Navigate to={`/EditProduct/${parseInt(product.id) + 1}`} />}
-          >
-            ویرایش
+          <div>
+            <NavLink
+              valueThis={product}
+              to={`/EditProduct/${parseInt(product.id) + 1}`}
+              state={{ myState: { product } }}
+            >
+              ویرایش
+            </NavLink>
           </div>
 
           <svg
