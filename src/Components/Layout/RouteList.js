@@ -1,6 +1,6 @@
 import HomePage from "./../pages/HomePage";
 import AboutUs from "./../pages/AboutUs";
-import Profile from "./../pages/Profile";
+import Profile from "../pages/ProfileUser";
 import NotFound from "./../pages/NotFound";
 import ProductList from "./../pages/ProductList";
 import EditProduct from "./../pages/EditProduct";

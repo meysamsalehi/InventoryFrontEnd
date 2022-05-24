@@ -1,6 +1,4 @@
-import React, { useReducer, useContext } from "react";
-const ProductsContext = React.createContext(); //state
-const ProductsContextDispatcher = React.createContext(); //setState
+import { INCREASE, DECREASE } from "./productTypes";
 
 const initialState = [
   { title: "لپ تاپ ایسوس", category: "mobile", id: 1, quantity: 1 },
@@ -8,16 +6,18 @@ const initialState = [
   { title: "هندزفری", category: "web", id: 3, quantity: 1 },
 ];
 
-const reducer = (state, action) => {
+const productReducer = (state = initialState, action) => {
   switch (action.type) {
-    case "increment":
+    case INCREASE:
+      // return { ...state, quantity: state.quantity + action.payload };
       const indexIncrement = state.findIndex((p) => p.id === action.id);
       const productIncrement = { ...state[indexIncrement] };
       productIncrement.quantity++;
       const productUpdatedIncrement = [...state];
       productUpdatedIncrement[indexIncrement] = productIncrement;
       return productUpdatedIncrement;
-    case "decrement":
+    case DECREASE:
+      // return { ...state, quantity: state.quantity - action.payload };
       const index = state.findIndex((p) => p.id === action.id);
       const product = { ...state[index] };
       if (product.quantity === 1) {
@@ -29,16 +29,18 @@ const reducer = (state, action) => {
         productUpdated[index] = product;
         return productUpdated;
       }
-    case "add":
+    case "ADD":
       return [...state, action.values];
-    case "change":
+    case "CHANGE":
       const indexChange = state.findIndex((p) => p.id === action.id);
       const productChange = { ...state[indexChange] };
-      productChange.title = action.event.target.value;
+      productChange.title = action.values.title;
+      productChange.quantity = action.values.quantity;
+      productChange.category = action.values.category;
       const productUpdatedChange = [...state];
       productUpdatedChange[indexChange] = productChange;
       return productUpdatedChange;
-    case "remove":
+    case "REMOVE":
       const filteredProducts = state.filter((p) => p.id !== action.id);
       return filteredProducts;
     default:
@@ -46,20 +48,4 @@ const reducer = (state, action) => {
   }
 };
 
-const InventoryProvider = ({ children }) => {
-  const [products, dispatch] = useReducer(reducer, initialState);
-  return (
-    <div>
-      <ProductsContext.Provider value={products}>
-        <ProductsContextDispatcher.Provider value={dispatch}>
-          {children}
-        </ProductsContextDispatcher.Provider>
-      </ProductsContext.Provider>
-    </div>
-  );
-};
-
-export default InventoryProvider;
-
-export const useProducts = () => useContext(ProductsContext);
-export const useProductsAction = () => useContext(ProductsContextDispatcher);
+export default productReducer;

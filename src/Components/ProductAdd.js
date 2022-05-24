@@ -1,21 +1,18 @@
 import Input from "../Common/Input";
 import SubmitBtn from "../Common/SubmitBnt";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useFormik } from "formik";
 import * as yup from "yup";
-import { useProducts, useProductsAction } from "./Providers/InventoryProvider";
 import Select from "../Common/Select";
+import { useDispatch, useSelector } from "react-redux";
+import { addProduct } from "./../redux/product/productAction";
+import selectOption from './../Common/SelectedOption';
 
 const ProductAdd = () => {
-  const product = useProducts();
-  const dispatch = useProductsAction();
+  const product = useSelector((state) => state);
+  const dispatch = useDispatch();
 
-  const selectOption = [
-    { value: "web", label: "وب" },
-    { value: "mobile", label: "موبایل" },
-  ];
 
-  const { register, handleSubmit } = useState();
 
   const initialValuesFormik = {
     id: "",
@@ -24,12 +21,9 @@ const ProductAdd = () => {
     quantity: "",
   };
 
-  // if (editPro.id) {
-  //   initialValuesFormik = editPro;
-  // }
-
   const onSubmit = (values) => {
-    dispatch({ type: "add", values });
+    dispatch(addProduct(values));
+    formik.resetForm();
   };
 
   const requiredMessage = "ورود مقدار الزامی است";

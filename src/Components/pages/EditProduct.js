@@ -4,14 +4,15 @@ import * as yup from "yup";
 import Input from "./../../Common/Input";
 import Select from "./../../Common/Select";
 import SubmitBtn from "./../../Common/SubmitBnt";
-import { useProducts } from "../Providers/InventoryProvider";
-import { useProductsAction } from "./../Providers/InventoryProvider";
+
 import { useParams, useLocation } from "react-router-dom";
 import selectOption from "./../../Common/SelectedOption";
+import { useDispatch, useSelector } from "react-redux";
+import { changeProduct } from "../../redux/product/productAction";
 
 const EditProduct = (props) => {
-  const product = useProducts();
-  const dispatch = useProductsAction();
+  const product = useSelector((state) => state);
+  const dispatch = useDispatch();
 
   const params = useParams();
   const location = useLocation();
@@ -27,7 +28,8 @@ const EditProduct = (props) => {
   };
 
   const onSubmit = (values) => {
-    dispatch({ type: "add", values });
+    dispatch(changeProduct(initialValuesFormik.id, values));
+    console.log("values edit", values);
   };
 
   const requiredMessage = "ورود مقدار الزامی است";

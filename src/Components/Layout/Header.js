@@ -1,9 +1,8 @@
-import logo from "./../logo.svg";
-import { useProducts, useProductsAction } from "./Providers/InventoryProvider";
-
+import { useDispatch, useSelector } from "react-redux";
+import logo from "../../assets/img/logo.svg";
 const Header = () => {
-  const products = useProducts();
-  const dispatch = useProductsAction();
+  const products = useSelector((state) => state);
+  const dispatch = useDispatch();
 
   // console.log(products);
 

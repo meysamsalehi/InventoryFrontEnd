@@ -1,7 +1,5 @@
-import MainContent from "../MainContent";
-import InventoryProvider from "../Providers/InventoryProvider";
-import SideBar from "../SideBar";
-import Header from "./../Header";
+import SideBar from "./SideBar";
+import Header from "./Header";
 import { useState, useEffect } from "react";
 
 const Layout = ({ children }) => {

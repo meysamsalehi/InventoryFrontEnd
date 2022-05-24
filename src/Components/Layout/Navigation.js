@@ -1,8 +1,5 @@
-import { Link, NavLink } from "react-router-dom";
-import HomePage from "./pages/HomePage";
-import AboutUs from "./pages/AboutUs";
-import Profile from "./pages/Profile";
-import RouteList from "./Layout/RouteList";
+import { NavLink } from "react-router-dom";
+import RouteList from "./RouteList";
 
 const Navigation = () => {
   return (

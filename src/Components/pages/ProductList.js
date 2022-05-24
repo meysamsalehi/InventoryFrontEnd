@@ -1,12 +1,10 @@
-import { Link } from "react-router-dom";
-import { useProducts } from "../Providers/InventoryProvider";
-import { useProductsAction } from "./../Providers/InventoryProvider";
 import Product from "./../Product";
+import { useSelector } from "react-redux";
+
 const ProductList = (props) => {
   //   props.history.push("AboutUs");
 
-  const products = useProducts();
-  const dispatch = useProductsAction();
+  const products = useSelector((state) => state);
 
   return (
     <div className=" border border-slate-200 rounded-lg flex flex-col justify-between items-between p-4">
