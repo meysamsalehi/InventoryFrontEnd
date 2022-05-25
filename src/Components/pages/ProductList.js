@@ -9,18 +9,13 @@ const ProductList = (props) => {
 
   const dispatch = useDispatch();
 
-  const [searchTitle, setSearchTtile] = useState("");
-  const [filteredProduct, setFilteredProduct] = useState("");
+  const [value, setValue] = useState("");
+
   const products = useSelector((state) => state.product);
 
   const changeHandler = (e) => {
-    setSearchTtile(e.target.value);
-    dispatch(filterTitleProduct(searchTitle));
-
-    // dispatch({ type: "filterChangeHandler", SelectedOption: filter });
-    // dispatch({ type: "sort", SelectedOption: sort });
-    // dispatch({ type: "search", event: e });
-    // setValue(e.target.value);
+    dispatch({ type: "search", event: e });
+    setValue(e.target.value);
   };
 
   return (
@@ -45,20 +40,12 @@ const ProductList = (props) => {
 
         <div className="">
           <input
-            id="search-title"
-            // onChange={(e) => searchHandler(e)}
-            onChange={changeHandler}
-            value={searchTitle}
             type="text"
+            onChange={changeHandler}
+            value={value}
+            placeholder="Search input"
             className="bg-transparent px-3 py-2 border border-slate-200 rounded-xl text-sm"
           />
-          <button
-            className="w-8 h-8 bg-red-500"
-            onClick={() => dispatch(filterTitleProduct(searchTitle))}
-          >
-            add
-          </button>
-          {searchTitle}
         </div>
 
         {products.map((product, index) => {

@@ -43,8 +43,15 @@ const productReducer = (state = initialState, action) => {
     case REMOVE:
       const filteredProducts = state.filter((p) => p.id !== action.id);
       return filteredProducts;
-    case FILTER:
-        return state.filter((p) => p.title.includes(action.value));
+    case "search": {
+      const value = action.event.target.value;
+      console.log("value search", value);
+      if (value == "") {
+        return initialState;
+      } else {
+        return state.filter((p) => p.title.includes(value));
+      }
+    }
 
     default:
       return state;
