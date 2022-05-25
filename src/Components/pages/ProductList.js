@@ -1,18 +1,26 @@
 import Product from "./../Product";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import Input from "../../Common/Input";
 import { useState } from "react";
+import { filterTitleProduct } from "../../redux/product/productAction";
 
 const ProductList = (props) => {
   //   props.history.push("AboutUs");
 
-  const [searchTitle, setSearchTtile] = useState(null);
-  const [filteredProduct, setFilteredProduct] = useState(null);
+  const dispatch = useDispatch();
+
+  const [searchTitle, setSearchTtile] = useState("");
+  const [filteredProduct, setFilteredProduct] = useState("");
   const products = useSelector((state) => state.product);
 
-  const searchHandler = () => {
-    setFilteredProduct(products.filter((p) => p.title.includes(searchTitle)));
-    console.log(filteredProduct);
+  const changeHandler = (e) => {
+    setSearchTtile(e.target.value);
+    dispatch(filterTitleProduct(searchTitle));
+
+    // dispatch({ type: "filterChangeHandler", SelectedOption: filter });
+    // dispatch({ type: "sort", SelectedOption: sort });
+    // dispatch({ type: "search", event: e });
+    // setValue(e.target.value);
   };
 
   return (
@@ -38,13 +46,17 @@ const ProductList = (props) => {
         <div className="">
           <input
             id="search-title"
-            onChange={(e) => setSearchTtile(e.target.value)}
+            // onChange={(e) => searchHandler(e)}
+            onChange={changeHandler}
             value={searchTitle}
             type="text"
             className="bg-transparent px-3 py-2 border border-slate-200 rounded-xl text-sm"
           />
-          <button className="w-8 h-8 bg-red-600" onClick={searchHandler}>
-            hi
+          <button
+            className="w-8 h-8 bg-red-500"
+            onClick={() => dispatch(filterTitleProduct(searchTitle))}
+          >
+            add
           </button>
           {searchTitle}
         </div>

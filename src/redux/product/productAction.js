@@ -1,4 +1,4 @@
-import { INCREASE, DECREASE, REMOVE, CHANGE, ADD } from "./productTypes";
+import { INCREASE, DECREASE, REMOVE, CHANGE, ADD, FILTER } from "./productTypes";
 
 export const increaseProduct = (id) => {
   return { type: INCREASE, payload: 1, id };
@@ -18,4 +18,8 @@ export const changeProduct = (id, values) => {
 
 export const addProduct = (values) => {
   return { type: ADD, values };
+};
+
+export const filterTitleProduct = (value) => {
+  return { type: FILTER, value };
 };

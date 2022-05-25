@@ -1,4 +1,4 @@
-import { INCREASE, DECREASE } from "./productTypes";
+import { INCREASE, DECREASE, FILTER, REMOVE, CHANGE, ADD } from "./productTypes";
 
 const initialState = [
   { title: "لپ تاپ ایسوس", category: "mobile", id: 1, quantity: 1 },
@@ -29,9 +29,9 @@ const productReducer = (state = initialState, action) => {
         productUpdated[index] = product;
         return productUpdated;
       }
-    case "ADD":
+    case ADD:
       return [...state, action.values];
-    case "CHANGE":
+    case CHANGE:
       const indexChange = state.findIndex((p) => p.id === action.id);
       const productChange = { ...state[indexChange] };
       productChange.title = action.values.title;
@@ -40,9 +40,12 @@ const productReducer = (state = initialState, action) => {
       const productUpdatedChange = [...state];
       productUpdatedChange[indexChange] = productChange;
       return productUpdatedChange;
-    case "REMOVE":
+    case REMOVE:
       const filteredProducts = state.filter((p) => p.id !== action.id);
       return filteredProducts;
+    case FILTER:
+        return state.filter((p) => p.title.includes(action.value));
+
     default:
       return state;
   }
