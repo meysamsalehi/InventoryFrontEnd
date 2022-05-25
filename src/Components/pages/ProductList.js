@@ -1,10 +1,19 @@
 import Product from "./../Product";
 import { useSelector } from "react-redux";
+import Input from "../../Common/Input";
+import { useState } from "react";
 
 const ProductList = (props) => {
   //   props.history.push("AboutUs");
 
-  const products = useSelector((state) => state);
+  const [searchTitle, setSearchTtile] = useState(null);
+  const [filteredProduct, setFilteredProduct] = useState(null);
+  const products = useSelector((state) => state.product);
+
+  const searchHandler = () => {
+    setFilteredProduct(products.filter((p) => p.title.includes(searchTitle)));
+    console.log(filteredProduct);
+  };
 
   return (
     <div className=" border border-slate-200 rounded-lg flex flex-col justify-between items-between p-4">
@@ -25,6 +34,21 @@ const ProductList = (props) => {
             </svg>
           </div>
         </div>
+
+        <div className="">
+          <input
+            id="search-title"
+            onChange={(e) => setSearchTtile(e.target.value)}
+            value={searchTitle}
+            type="text"
+            className="bg-transparent px-3 py-2 border border-slate-200 rounded-xl text-sm"
+          />
+          <button className="w-8 h-8 bg-red-600" onClick={searchHandler}>
+            hi
+          </button>
+          {searchTitle}
+        </div>
+
         {products.map((product, index) => {
           return <Product key={index} product={product} />;
         })}

@@ -11,7 +11,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { changeProduct } from "../../redux/product/productAction";
 
 const EditProduct = (props) => {
-  const product = useSelector((state) => state);
+  const product = useSelector((state) => state.product);
   const dispatch = useDispatch();
 
   const params = useParams();

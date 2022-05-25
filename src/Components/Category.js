@@ -2,23 +2,18 @@ import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import selectOption from "./../Common/SelectedOption";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  decreaseProduct,
-  increaseProduct,
-  removeProduct,
-} from "../redux/product/productAction";
+
 import Minus from "../assets/icon/svg/Minus";
 import Trash from "../assets/icon/svg/Trash";
 import Plus from "../assets/icon/svg/Plus";
 
-const Product = ({ product }) => {
-  const products = useSelector((state) => state);
-  const dispatch = useDispatch();
+const Category = ({ category }) => {
+  const products = useSelector((state) => state.product);
 
   return (
     <>
       <div
-        key={product.id}
+        key={category.id}
         className="flex justify-between items-center border-b border-slate-100 pb-2 hover:bg-slate-100 hover:rounded-lg hover:px-2 py-2"
       >
         <div className="flex justify-start items-center w-3/12">
@@ -34,34 +29,36 @@ const Product = ({ product }) => {
               clipRule="evenodd"
             />
           </svg>
-          <span className="mr-3">{product.title}</span>
+          <span className="mr-3">{category.label}</span>
         </div>
         <div className="flex justify-start items-center gap-x-3 w-3/12">
           <span className="bg-slate-200 w-6 h-6 rounded-full flex flex-row justify-center items-center">
-            {product.quantity}
+            {category.id}
           </span>
-          <span onClick={() => dispatch(increaseProduct(product.id))}>
-            <Plus />
-          </span>
+          {/* <span onClick={() => dispatch(increasecategory(category.id))}> */}
+          <Plus />
+          {/* </span> */}
 
-          {product.quantity >= 2 && (
-            <span onClick={() => dispatch(decreaseProduct(product.id))}>
-              <Minus />
-            </span>
+          {category.id >= 2 && (
+            // <span onClick={() => dispatch(decreasecategory(category.id))}>
+            <Minus />
+            // </span>
           )}
 
-          {product.quantity >= 1 && (
-            <span onClick={() => dispatch(removeProduct(product.id))}>
-              <Trash />
-            </span>
+          {category.id >= 1 && (
+            // <span onClick={() => dispatch(removecategory(category.id))}>
+            <div>
+              {products.filter((product) => product.category === category.value).length}
+            </div>
+            // </span>
           )}
         </div>
 
-        <div className="flex justify-start items-center w-3/12">
+        {/* <div className="flex justify-start items-center w-3/12">
           <span>
             <span>
               دسته بندی:
-              {selectOption.find((c) => c.value === product.category).label}
+              {selectOption.find((c) => c.value === category.category).label}
             </span>
           </span>
         </div>
@@ -69,8 +66,8 @@ const Product = ({ product }) => {
         <div className="flex justify-between items-center">
           <div>
             <NavLink
-              to={`/EditProduct/${parseInt(product.id) + 1}`}
-              state={{ myState: { product } }}
+              to={`/Editcategory/${parseInt(category.id) + 1}`}
+              state={{ myState: { category } }}
             >
               ویرایش
             </NavLink>
@@ -86,10 +83,10 @@ const Product = ({ product }) => {
           >
             <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
           </svg>
-        </div>
+        </div> */}
       </div>
     </>
   );
 };
 
-export default Product;
+export default Category;

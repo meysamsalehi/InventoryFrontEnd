@@ -1,5 +1,5 @@
 const Select = ({ name, label, formik, selectOption }) => {
-  console.log("form", formik.initialValues.id);
+  // console.log("form", formik.initialValues.id);
 
   return (
     <>

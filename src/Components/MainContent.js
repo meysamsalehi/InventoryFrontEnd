@@ -2,8 +2,31 @@ import delivered from "./../assets/img/status-delivered.svg";
 import processing from "./../assets/img/status-processing.svg";
 import returned from "./../assets/img/status-returned.svg";
 import ProductAdd from "./ProductAdd";
+import { useEffect, useState } from "react";
 
 const MainContent = () => {
+  const [time, setTime] = useState("");
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setTime(
+        new Date().toLocaleDateString("fa-IR", {
+          weekday: "long",
+          year: "numeric",
+          month: "long",
+          day: "numeric",
+          hour: "numeric",
+          minute: "numeric",
+          second: "numeric",
+        }),
+      );
+    }, 1000);
+    return () => {
+      // console.log(`clearing interval`);
+      clearInterval(interval);
+    };
+  }, [time]);
+
   return (
     <div className="basis-8/12 flex flex-col justify-start gap-y-5 ">
       <div className="max-h-10 border border-slate-200 rounded-lg flex justify-between items-center p-4">
@@ -22,8 +45,7 @@ const MainContent = () => {
           />
         </svg>
         <span className="text-xs text-orange-500 basis-8/12 flex justify-start">
-          برای افزایش امنیت حساب کاربری خود و جلوگیری از سوءاستفاده، لطفا هویت خود را
-          تایید کنید
+          <div>{time}</div>
         </span>
 
         <svg
