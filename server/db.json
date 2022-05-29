@@ -1,0 +1,33 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "title": "سامسونگ s21",
+      "quantity": "25",
+      "category":"mobile"
+    },    {
+      "id": 1,
+      "title": "شیائومی رد می ",
+      "quantity": "10",
+      "category":"mobile"
+    },
+    {
+      "id": 1,
+      "title": "آیفون سیکس",
+      "quantity": "28",
+      "category":"mobile"
+    },
+    {
+      "id": 1,
+      "title": "آیکون 11",
+      "quantity": "14",
+      "category":"mobile"
+    },
+    {
+      "id": 1,
+      "title": "آنر 10",
+      "quantity": "8",
+      "category":"mobile"
+    }
+  ]
+}

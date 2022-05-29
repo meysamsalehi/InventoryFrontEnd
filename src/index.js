@@ -4,13 +4,16 @@ import "./index.css";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
-import store from "./redux/store";
+// import store from "./redux/store";
+
 import Layout from "./Components/Layout/Layout";
 import { Route, Routes } from "react-router-dom";
 import RouteList from "./Components/Layout/RouteList";
 import Dashboard from "./Components/Dashboard";
 import Download from "./Components/Download";
 import ProfileUser from "./Components/pages/ProfileUser";
+import Test from "./Test";
+import { store } from "./features/store";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -35,6 +38,8 @@ root.render(
         </Routes>
       </Layout>
     </BrowserRouter>
+
+    <Test />
   </Provider>,
 
   // <AppRedux />,

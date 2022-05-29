@@ -2,7 +2,7 @@ import Product from "./../Product";
 import { useSelector, useDispatch } from "react-redux";
 import Input from "../../Common/Input";
 import { useState } from "react";
-import { filterTitleProduct } from "../../redux/product/productAction";
+import { search } from "../../features/product/productSlice";
 
 const ProductList = (props) => {
   //   props.history.push("AboutUs");
@@ -12,9 +12,11 @@ const ProductList = (props) => {
   const [value, setValue] = useState("");
 
   const products = useSelector((state) => state.product);
+  console.log("pro", products);
 
   const changeHandler = (e) => {
-    dispatch({ type: "search", event: e });
+    // dispatch({ type: "search", event: e });
+    dispatch(search({ event: e.target.value }));
     setValue(e.target.value);
   };
 

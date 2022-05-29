@@ -1,8 +1,13 @@
 import { useDispatch, useSelector } from "react-redux";
 import logo from "../../assets/img/logo.svg";
+import { useEffect } from "react";
+import axios from "axios";
+
 const Header = () => {
   const products = useSelector((state) => state);
   const dispatch = useDispatch();
+
+
 
   // console.log(products);
 

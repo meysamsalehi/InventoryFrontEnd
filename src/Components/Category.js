@@ -6,9 +6,11 @@ import { useDispatch, useSelector } from "react-redux";
 import Minus from "../assets/icon/svg/Minus";
 import Trash from "../assets/icon/svg/Trash";
 import Plus from "../assets/icon/svg/Plus";
+import { decrement, increment, remove } from "../features/category/categorySlice";
 
 const Category = ({ category }) => {
   const products = useSelector((state) => state.product);
+  const dispatch = useDispatch();
 
   return (
     <>
@@ -35,15 +37,10 @@ const Category = ({ category }) => {
           <span className="bg-slate-200 w-6 h-6 rounded-full flex flex-row justify-center items-center">
             {category.id}
           </span>
-          {/* <span onClick={() => dispatch(increasecategory(category.id))}> */}
-          <Plus />
-          {/* </span> */}
 
-          {category.id >= 2 && (
-            // <span onClick={() => dispatch(decreasecategory(category.id))}>
-            <Minus />
-            // </span>
-          )}
+          <span onClick={() => dispatch(remove({ id: category.id }))}>
+            <Trash />
+          </span>
 
           {category.id >= 1 && (
             // <span onClick={() => dispatch(removecategory(category.id))}>

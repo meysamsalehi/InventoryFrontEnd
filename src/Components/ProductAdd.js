@@ -5,8 +5,8 @@ import { useFormik } from "formik";
 import * as yup from "yup";
 import Select from "../Common/Select";
 import { useDispatch, useSelector } from "react-redux";
-import { addProduct } from "./../redux/product/productAction";
 import selectOption from "./../Common/SelectedOption";
+import { add } from "../features/product/productSlice";
 
 const ProductAdd = () => {
   const product = useSelector((state) => state.product);
@@ -19,10 +19,8 @@ const ProductAdd = () => {
     quantity: "",
   };
 
-  // console.log("sss", { ...initialValuesFormik, id: Math.floor(Math.random() * 1000) });
-
   const onSubmit = (values) => {
-    dispatch(addProduct({ ...values, id: Math.floor(Math.random() * 1000) }));
+    dispatch(add({ values: { ...values, id: Math.floor(Math.random() * 1000) } }));
     formik.resetForm();
   };
 

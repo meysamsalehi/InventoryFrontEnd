@@ -2,14 +2,10 @@ import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import selectOption from "./../Common/SelectedOption";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  decreaseProduct,
-  increaseProduct,
-  removeProduct,
-} from "../redux/product/productAction";
 import Minus from "../assets/icon/svg/Minus";
 import Trash from "../assets/icon/svg/Trash";
 import Plus from "../assets/icon/svg/Plus";
+import { decrement, increment, remove } from "../features/product/productSlice";
 
 const Product = ({ product }) => {
   const products = useSelector((state) => state);
@@ -40,18 +36,18 @@ const Product = ({ product }) => {
           <span className="bg-slate-200 w-6 h-6 rounded-full flex flex-row justify-center items-center">
             {product.quantity}
           </span>
-          <span onClick={() => dispatch(increaseProduct(product.id))}>
+          <span onClick={() => dispatch(increment({ id: product.id }))}>
             <Plus />
           </span>
 
           {product.quantity >= 2 && (
-            <span onClick={() => dispatch(decreaseProduct(product.id))}>
+            <span onClick={() => dispatch(decrement({ id: product.id }))}>
               <Minus />
             </span>
           )}
 
           {product.quantity >= 1 && (
-            <span onClick={() => dispatch(removeProduct(product.id))}>
+            <span onClick={() => dispatch(remove({ id: product.id }))}>
               <Trash />
             </span>
           )}
