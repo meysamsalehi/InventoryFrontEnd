@@ -12,7 +12,6 @@ import RouteList from "./Components/Layout/RouteList";
 import Dashboard from "./Components/Dashboard";
 import Download from "./Components/Download";
 import ProfileUser from "./Components/pages/ProfileUser";
-import Test from "./Test";
 import { store } from "./features/store";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
@@ -38,8 +37,6 @@ root.render(
         </Routes>
       </Layout>
     </BrowserRouter>
-
-    <Test />
   </Provider>,
 
   // <AppRedux />,

@@ -8,7 +8,7 @@ const Layout = ({ children }) => {
   useEffect(() => {
     setInterval(() => {
       setLoad(true);
-    }, 3000);
+    }, 0);
   }, []);
 
   return (
@@ -27,7 +27,7 @@ const Layout = ({ children }) => {
           </div>
         </div>
       ) : (
-        <div>salam</div>
+        <div>در حال انتظار</div>
       )}
     </div>
   );

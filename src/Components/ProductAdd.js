@@ -6,7 +6,7 @@ import * as yup from "yup";
 import Select from "../Common/Select";
 import { useDispatch, useSelector } from "react-redux";
 import selectOption from "./../Common/SelectedOption";
-import { add } from "../features/product/productSlice";
+import { add, addAsyncProducts } from "../features/product/productSlice";
 
 const ProductAdd = () => {
   const product = useSelector((state) => state.product);
@@ -20,7 +20,10 @@ const ProductAdd = () => {
   };
 
   const onSubmit = (values) => {
-    dispatch(add({ values: { ...values, id: Math.floor(Math.random() * 1000) } }));
+    // dispatch(add({ values: { ...values, id: Math.floor(Math.random() * 1000) } }));
+    dispatch(
+      addAsyncProducts({ values: { ...values, id: Math.floor(Math.random() * 1000) } }),
+    );
     formik.resetForm();
   };
 

@@ -1,9 +1,23 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import axios from "axios";
 
-const initialState = [
-  { id: 1, value: "web", label: "وب" },
-  { id: 2, value: "mobile", label: "موبایل" },
-];
+const initialState = {
+  categories: [],
+  loading: false,
+  error: null,
+};
+
+export const getAsyncCategories = createAsyncThunk(
+  "Categories/getAsyncCategories",
+  async (_, { rejectWithValue }) => {
+    try {
+      const response = await axios.get("http://localhost:3000/Categories");
+      return response.data;
+    } catch (error) {
+      return rejectWithValue([], error);
+    }
+  },
+);
 
 export const categorySlice = createSlice({
   name: "category",
@@ -35,6 +49,22 @@ export const categorySlice = createSlice({
       } else {
         return state.filter((p) => p.title.includes(value));
       }
+    },
+  },
+  exteraReducer: {
+    [getAsyncCategories.fulfilled]: (state, action) => {
+      return { ...state, categories: action.payload, loading: false };
+    },
+    [getAsyncCategories.pending]: (state, action) => {
+      return { ...state, loading: true, categories: [] };
+    },
+    [getAsyncCategories.rejected]: (state, action) => {
+      return {
+        ...state,
+        loading: false,
+        categories: [],
+        error: action.error.message,
+      };
     },
   },
 });

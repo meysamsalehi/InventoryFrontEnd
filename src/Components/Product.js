@@ -5,7 +5,13 @@ import { useDispatch, useSelector } from "react-redux";
 import Minus from "../assets/icon/svg/Minus";
 import Trash from "../assets/icon/svg/Trash";
 import Plus from "../assets/icon/svg/Plus";
-import { decrement, increment, remove } from "../features/product/productSlice";
+import {
+  decrement,
+  decrementAsyncProducts,
+  increment,
+  incrementAsyncProducts,
+  remove,
+} from "../features/product/productSlice";
 
 const Product = ({ product }) => {
   const products = useSelector((state) => state);
@@ -36,12 +42,24 @@ const Product = ({ product }) => {
           <span className="bg-slate-200 w-6 h-6 rounded-full flex flex-row justify-center items-center">
             {product.quantity}
           </span>
-          <span onClick={() => dispatch(increment({ id: product.id }))}>
+          <span
+            onClick={() =>
+              dispatch(
+                incrementAsyncProducts({ id: product.id, quantity: product.quantity }),
+              )
+            }
+          >
             <Plus />
           </span>
 
           {product.quantity >= 2 && (
-            <span onClick={() => dispatch(decrement({ id: product.id }))}>
+            <span
+              onClick={() =>
+                dispatch(
+                  decrementAsyncProducts({ id: product.id, quantity: product.quantity }),
+                )
+              }
+            >
               <Minus />
             </span>
           )}
@@ -57,7 +75,7 @@ const Product = ({ product }) => {
           <span>
             <span>
               دسته بندی:
-              {selectOption.find((c) => c.value === product.category).label}
+              {/* {selectOption.find((c) => c.value === product.category).label} */}
             </span>
           </span>
         </div>
