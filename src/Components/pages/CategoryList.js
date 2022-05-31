@@ -1,10 +1,16 @@
 import { useSelector } from "react-redux";
 import Category from "./../Category";
+import { getAsyncCategories } from "./../../features/category/categorySlice";
 
 const CategoryList = (props) => {
   //   props.history.push("AboutUs");
+  const dispatch = useDispatch();
 
-  const categories = useSelector((state) => state.category);
+  const { categories, loading, error } = useSelector((state) => state.category);
+
+  useEffect(() => {
+    dispatch(getAsyncCategories());
+  }, []);
 
   return (
     <div className=" border border-slate-200 rounded-lg flex flex-col justify-between items-between p-4">

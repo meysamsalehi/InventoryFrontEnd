@@ -8,6 +8,7 @@ import Plus from "../assets/icon/svg/Plus";
 import {
   decrement,
   decrementAsyncProducts,
+  deleteAsyncProducts,
   increment,
   incrementAsyncProducts,
   remove,
@@ -65,7 +66,7 @@ const Product = ({ product }) => {
           )}
 
           {product.quantity >= 1 && (
-            <span onClick={() => dispatch(remove({ id: product.id }))}>
+            <span onClick={() => dispatch(deleteAsyncProducts({ id: product.id }))}>
               <Trash />
             </span>
           )}
@@ -75,7 +76,7 @@ const Product = ({ product }) => {
           <span>
             <span>
               دسته بندی:
-              {/* {selectOption.find((c) => c.value === product.category).label} */}
+              {selectOption.find((c) => c.value === product.category).label}
             </span>
           </span>
         </div>

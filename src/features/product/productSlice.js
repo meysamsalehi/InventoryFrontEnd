@@ -76,6 +76,18 @@ export const getSearchAsyncProducts = createAsyncThunk(
   },
 );
 
+export const deleteAsyncProducts = createAsyncThunk(
+  "todos/deleteAsyncProducts",
+  async (payload, { rejectWithValue }) => {
+    try {
+      const response = await axios.delete(`http://localhost:3001/products/${payload.id}`);
+      return { id: payload.id };
+    } catch (error) {
+      return rejectWithValue([], error);
+    }
+  },
+);
+
 const productSlice = createSlice({
   name: "products",
   initialState: {
@@ -193,18 +205,20 @@ const productSlice = createSlice({
       selectedProduct.quantity--;
     },
     [getSearchAsyncProducts.fulfilled]: (state, action) => {
-      const value = action.payload.event;
+      const value = action.meta.arg.event;
+
       if (value == "") {
         return { ...state, products: action.payload, loading: false };
       } else {
-        console.log("khalyshode", value, action.payload);
-
         return {
           ...state,
           products: action.payload.filter((p) => p.title.includes(value)),
           loading: false,
         };
       }
+    },
+    [deleteAsyncProducts.fulfilled]: (state, action) => {
+      state.products = state.products.filter((pro) => pro.id != action.payload.id);
     },
   },
 });
