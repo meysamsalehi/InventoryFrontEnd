@@ -3,7 +3,7 @@
     {
       "id": 1,
       "title": "سامسونگ s21",
-      "quantity": 41,
+      "quantity": 57,
       "category": "mobile"
     },
     {
@@ -35,6 +35,12 @@
       "title": "شیائومی من",
       "category": "web",
       "quantity": "10"
+    },
+    {
+      "id": 966,
+      "title": "شیائومی ردمی نوت 10  پرومکس",
+      "category": "web",
+      "quantity": "11"
     }
   ],
   "categories": [

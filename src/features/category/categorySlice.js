@@ -1,58 +1,47 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-const initialState = {
-  categories: [],
-  loading: false,
-  error: null,
-};
-
 export const getAsyncCategories = createAsyncThunk(
-  "Categories/getAsyncCategories",
+  "categories/getAsyncCategories",
   async (_, { rejectWithValue }) => {
     try {
-      const response = await axios.get("http://localhost:3000/Categories");
-      return response.data;
+      const respons = await axios.get("http://localhost:3001/categories/");
+      console.log(respons.data);
+      return respons.data;
     } catch (error) {
+      console.log(error);
+
       return rejectWithValue([], error);
     }
   },
 );
 
-export const categorySlice = createSlice({
-  name: "category",
-  initialState,
-  reducers: {
-    remove: (state, action) => {
-      const filteredcategorys = state.filter((p) => p.id !== action.payload.id);
-      return filteredcategorys;
-    },
-    update: (state, action) => {
-      const indexChange = state.findIndex((p) => p.id === action.payload.id);
-      const categoryChange = { ...state[indexChange] };
-      categoryChange.title = action.payload.values.title;
-      categoryChange.quantity = action.payload.values.quantity;
-      categoryChange.category = action.payload.values.category;
-      const categoryUpdatedChange = [...state];
-      categoryUpdatedChange[indexChange] = categoryChange;
-      return categoryUpdatedChange;
-    },
-    add: (state, action) => {
-      console.log("add", action.payload.values);
-      return [...state, action.payload.values];
-    },
-    search: (state, action) => {
-      const value = action.payload.event;
-      console.log("value search", value);
-      if (value == "") {
-        return initialState;
-      } else {
-        return state.filter((p) => p.title.includes(value));
-      }
-    },
+export const getSearchAsyncCategories = createAsyncThunk(
+  "categories/getSearchAsyncCategories",
+  async (_, { rejectWithValue }) => {
+    try {
+      const respons = await axios.get("http://localhost:3001/categories/");
+      console.log(respons.data);
+      return respons.data;
+    } catch (error) {
+      console.log(error);
+
+      return rejectWithValue([], error);
+    }
   },
-  exteraReducer: {
+);
+
+const categorySlice = createSlice({
+  name: "categories",
+  initialState: {
+    loading: false,
+    categories: [],
+    error: null,
+  },
+  reducers: {},
+  extraReducers: {
     [getAsyncCategories.fulfilled]: (state, action) => {
+      console.log(action.payload);
       return { ...state, categories: action.payload, loading: false };
     },
     [getAsyncCategories.pending]: (state, action) => {
@@ -69,7 +58,6 @@ export const categorySlice = createSlice({
   },
 });
 
-// Action creators are generated for each case reducer function
-export const { remove, update, add, search } = categorySlice.actions;
-
+// export const { increment, decrement, incrementByAmount, remove, update, add, search } =
+//   categorySlice.actions;
 export default categorySlice.reducer;

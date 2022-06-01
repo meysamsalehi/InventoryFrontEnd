@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import selectOption from "./../Common/SelectedOption";
 import { useDispatch, useSelector } from "react-redux";
@@ -6,10 +6,11 @@ import { useDispatch, useSelector } from "react-redux";
 import Minus from "../assets/icon/svg/Minus";
 import Trash from "../assets/icon/svg/Trash";
 import Plus from "../assets/icon/svg/Plus";
-import { decrement, increment, remove } from "../features/category/categorySlice";
+import { getAsyncProducts } from "./../features/product/productSlice";
 
-const Category = ({ category }) => {
-  const products = useSelector((state) => state.product);
+const Category = ({ category, products }) => {
+  console.log("load products", products);
+
   const dispatch = useDispatch();
 
   return (
@@ -38,9 +39,9 @@ const Category = ({ category }) => {
             {category.id}
           </span>
 
-          <span onClick={() => dispatch(remove({ id: category.id }))}>
-            <Trash />
-          </span>
+          {/* <span onClick={() => dispatch(remove({ id: category.id }))}> */}
+          <Trash />
+          {/* </span> */}
 
           {category.id >= 1 && (
             // <span onClick={() => dispatch(removecategory(category.id))}>
