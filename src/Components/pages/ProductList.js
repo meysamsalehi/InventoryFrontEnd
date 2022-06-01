@@ -10,6 +10,7 @@ import {
 import { search } from "../../features/product/productSlice";
 import Asc from "../../assets/icon/svg/Asc";
 import Desc from "../../assets/icon/svg/Desc";
+import { NavLink } from "react-router-dom";
 
 const ProductList = (props) => {
   const { products, loading, error } = useSelector((state) => state.product);
@@ -38,9 +39,9 @@ const ProductList = (props) => {
       <div className=" border border-slate-200 rounded-lg flex flex-col justify-between items-between p-4">
         <div className=" border border-slate-200 rounded-lg flex flex-col justify-between items-between p-4 gap-y-4">
           <div className="flex justify-between items-center">
-            <div className="text-lg border-b-4  border-red-400">لیست محصولات انبار</div>
-            <div className="text-sm flex flex-row justify-between items-center text-cyan-500">
-              مشاهده همه
+            <span className="text-lg border-b-4  border-red-400">لیست محصولات انبار</span>
+            <div className="text-sm flex flex-row justify-end items-center text-cyan-500 w-4/12">
+              <NavLink to="/">افزودن محصول جدید </NavLink>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="h-6 w-6 basis-2/12"
@@ -59,14 +60,14 @@ const ProductList = (props) => {
               type="text"
               onChange={changeHandler}
               value={value}
-              placeholder="Search input"
+              placeholder="جستجوی عنوان محصول"
               className="bg-transparent px-3 py-2 border border-slate-200 rounded-xl text-sm"
             />
           </div>
 
-          <div class="flex justify-between items-center border-b border-slate-100 pb-2 hover:bg-slate-100 hover:rounded-lg hover:px-2 py-2">
-            <div class="flex justify-start items-center gap-x-4 w-4/12">
-              <span class="mr-3 font-semibold">عنوان محصول</span>
+          <div className="flex justify-between bg-slate-100  items-center border-b border-slate-100 pb-2 hover:bg-slate-100 rounded-lg px-2 hover:px-4 py-2">
+            <div className="flex justify-start items-center gap-x-4 w-4/12">
+              <span className="font-semibold">عنوان محصول</span>
               <div className="flex justify-start items-center">
                 <span
                   className="cursor-pointer"
@@ -85,8 +86,8 @@ const ProductList = (props) => {
                 </span>
               </div>
             </div>
-            <div class="flex justify-start items-center gap-x-4 w-3/12">
-              <span class="mr-3 font-semibold">موجودی </span>
+            <div className="flex justify-start items-center gap-x-4 w-3/12">
+              <span className="font-semibold">موجودی </span>
               <div className="flex justify-start items-center">
                 <span
                   className="cursor-pointer"
@@ -107,8 +108,8 @@ const ProductList = (props) => {
                 </span>
               </div>
             </div>
-            <div class="flex justify-start items-center gap-x-4 w-3/12">
-              <span class="mr-3 font-semibold">دسته بندی </span>
+            <div className="flex justify-start items-center gap-x-4 w-3/12">
+              <span className=" font-semibold">دسته بندی </span>
               <div className="flex justify-start items-center">
                 <span
                   className="cursor-pointer"
@@ -129,9 +130,9 @@ const ProductList = (props) => {
                 </span>
               </div>
             </div>
-            <div class="flex justify-between items-center mx-3">
+            <div className="flex justify-between items-center mx-3">
               <div>
-                <span class="font-semibold">عملیات</span>
+                <span className="font-semibold">عملیات</span>
               </div>
             </div>
           </div>

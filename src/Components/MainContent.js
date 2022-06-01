@@ -3,6 +3,7 @@ import processing from "./../assets/img/status-processing.svg";
 import returned from "./../assets/img/status-returned.svg";
 import ProductAdd from "./ProductAdd";
 import { useEffect, useState } from "react";
+import { NavLink } from "react-router-dom";
 
 const MainContent = () => {
   const [time, setTime] = useState("");
@@ -64,7 +65,7 @@ const MainContent = () => {
         <div className="flex justify-between items-center">
           <div className="text-lg border-b-4  border-red-400">محصولات</div>
           <div className="text-sm flex flex-row justify-between items-center text-cyan-500">
-            مشاهده همه
+            <NavLink to="/ProductList"> مشاهده محصولات </NavLink>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-6 w-6 basis-2/12"
