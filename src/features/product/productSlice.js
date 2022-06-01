@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import _ from "lodash";
 
 export const getAsyncProducts = createAsyncThunk(
   "products/getAsyncProducts",
@@ -26,6 +27,24 @@ export const addAsyncProducts = createAsyncThunk(
     } catch (error) {
       console.log(error);
 
+      return rejectWithValue([], error);
+    }
+  },
+);
+
+export const updateAsyncProducts = createAsyncThunk(
+  "products/updateAsyncProducts",
+  async (payload, { rejectWithValue }) => {
+    try {
+      // console.log("payload", payload);
+      const response = await axios.patch(`http://localhost:3001/products/${payload.id}`, {
+        id: payload.id,
+        title: payload.values.title,
+        quantity: payload.values.quantity,
+        category: payload.values.category,
+      });
+      return response.data;
+    } catch (error) {
       return rejectWithValue([], error);
     }
   },
@@ -175,11 +194,27 @@ const productSlice = createSlice({
       // console.log(searched);
       // return { ...state, searched };
     },
+
+    sort: (state, action) => {
+      return {
+        ...state,
+        products: _.orderBy(
+          state.products,
+          [action.payload.columnName],
+          [action.payload.sortType],
+        ),
+        loading: false,
+      };
+    },
   },
   extraReducers: {
     [getAsyncProducts.fulfilled]: (state, action) => {
       console.log(action.payload);
-      return { ...state, products: action.payload, loading: false };
+      return {
+        ...state,
+        products: _.orderBy(action.payload, ["title"], ["asc"]),
+        loading: false,
+      };
     },
     [getAsyncProducts.pending]: (state, action) => {
       return { ...state, loading: true, products: [] };
@@ -195,11 +230,23 @@ const productSlice = createSlice({
     [addAsyncProducts.fulfilled]: (state, action) => {
       state.products.push(action.payload);
     },
+    [updateAsyncProducts.fulfilled]: (state, action) => {
+      const indexChange = state.products.findIndex((p) => p.id === action.payload.id);
+      const productChange = { ...state[indexChange] };
+      productChange.title = action.payload.values.title;
+      productChange.quantity = action.payload.values.quantity;
+      productChange.category = action.payload.values.category;
+      const productUpdatedChange = [...state];
+      productUpdatedChange[indexChange] = productChange;
+      return productUpdatedChange;
+    },
+
     [incrementAsyncProducts.fulfilled]: (state, action) => {
       const selectedProduct = state.products.find((pro) => pro.id === action.payload.id);
       selectedProduct.quantity++;
       console.log("stateee", state.products);
     },
+
     [decrementAsyncProducts.fulfilled]: (state, action) => {
       const selectedProduct = state.products.find((pro) => pro.id === action.payload.id);
       selectedProduct.quantity--;
@@ -223,6 +270,14 @@ const productSlice = createSlice({
   },
 });
 
-export const { increment, decrement, incrementByAmount, remove, update, add, search } =
-  productSlice.actions;
+export const {
+  increment,
+  decrement,
+  incrementByAmount,
+  remove,
+  update,
+  add,
+  search,
+  sort,
+} = productSlice.actions;
 export default productSlice.reducer;

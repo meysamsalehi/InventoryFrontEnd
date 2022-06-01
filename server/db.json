@@ -3,8 +3,8 @@
     {
       "id": 1,
       "title": "سامسونگ s21",
-      "quantity": 57,
-      "category": "mobile"
+      "quantity": 18,
+      "category": "web"
     },
     {
       "id": 2,
@@ -15,32 +15,32 @@
     {
       "id": 3,
       "title": "آیفون سیکس",
-      "quantity": 14,
+      "quantity": 15,
       "category": "mobile"
     },
     {
       "id": 4,
       "title": "آیکون 11",
-      "quantity": "14",
+      "quantity": 14,
       "category": "mobile"
     },
     {
       "id": 5,
       "title": "آنر 8",
-      "quantity": "8",
+      "quantity": 24,
       "category": "mobile"
     },
     {
       "id": 761,
       "title": "شیائومی من",
       "category": "web",
-      "quantity": "10"
+      "quantity": 5
     },
     {
       "id": 966,
       "title": "شیائومی ردمی نوت 10  پرومکس",
       "category": "web",
-      "quantity": "11"
+      "quantity": 5
     }
   ],
   "categories": [

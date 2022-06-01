@@ -8,6 +8,7 @@ import SubmitBtn from "./../../Common/SubmitBnt";
 import { useParams, useLocation } from "react-router-dom";
 import selectOption from "./../../Common/SelectedOption";
 import { useDispatch, useSelector } from "react-redux";
+import { updateAsyncProducts } from "../../features/product/productSlice";
 // import { update } from "../../features/product/productSlice";
 
 const EditProduct = (props) => {
@@ -28,8 +29,8 @@ const EditProduct = (props) => {
   };
 
   const onSubmit = (values) => {
-    // dispatch(update({ id: initialValuesFormik.id, values }));
-    console.log("values edit", values);
+    dispatch(updateAsyncProducts({ id: initialValuesFormik.id, values }));
+    // console.log("values edit", values);
   };
 
   const requiredMessage = "ورود مقدار الزامی است";
