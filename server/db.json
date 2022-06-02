@@ -4,55 +4,53 @@
       "id": 1,
       "title": "سامسونگ s21",
       "quantity": 18,
-      "category": "web"
+      "category": 1
     },
     {
       "id": 2,
       "title": "شیائومی رد می ",
       "quantity": 10,
-      "category": "mobile"
+      "category": 2
     },
     {
       "id": 3,
       "title": "آیفون سیکس",
       "quantity": 19,
-      "category": "mobile"
+      "category": 2
     },
     {
       "id": 4,
       "title": "آیکون 11",
       "quantity": 14,
-      "category": "mobile"
+      "category": 1
     },
     {
       "id": 5,
       "title": "آنر 8",
-      "quantity": 26,
-      "category": "mobile"
+      "quantity": 29,
+      "category": 2
     },
     {
       "id": 761,
       "title": "شیائومی من",
-      "category": "web",
+      "category": 1,
       "quantity": 5
     },
     {
       "id": 966,
       "title": "شیائومی ردمی نوت 10  پرومکس",
-      "category": "web",
+      "category": 1,
       "quantity": 5
     }
   ],
   "categories": [
     {
       "id": 1,
-      "label": "وب",
-      "value": "web"
+      "label": "وب"
     },
     {
       "id": 2,
-      "label": "موبایل",
-      "value": "mobile"
+      "label": "موبایل"
     }
   ]
 }

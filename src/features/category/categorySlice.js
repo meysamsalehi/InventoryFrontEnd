@@ -1,6 +1,24 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
+export const addAsyncCategories = createAsyncThunk(
+  "products/addAsyncCategories",
+  async (payload, { rejectWithValue }) => {
+    try {
+      const respons = await axios.post(
+        "http://localhost:3001/Categories/",
+        payload.values,
+      );
+      console.log(respons.data);
+      return respons.data;
+    } catch (error) {
+      console.log(error);
+
+      return rejectWithValue([], error);
+    }
+  },
+);
+
 export const getAsyncCategories = createAsyncThunk(
   "categories/getAsyncCategories",
   async (_, { rejectWithValue }) => {
@@ -40,6 +58,9 @@ const categorySlice = createSlice({
   },
   reducers: {},
   extraReducers: {
+    [addAsyncCategories.fulfilled]: (state, action) => {
+      state.categories.push(action.payload);
+    },
     [getAsyncCategories.fulfilled]: (state, action) => {
       console.log(action.payload);
       return { ...state, categories: action.payload, loading: false };

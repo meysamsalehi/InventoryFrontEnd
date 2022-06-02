@@ -1,24 +1,27 @@
-import Product from "./../Product";
+import Product from "./Product";
 import { useSelector, useDispatch } from "react-redux";
-import Input from "../../Common/Input";
 import { useState, useEffect } from "react";
 import {
   getAsyncProducts,
   getSearchAsyncProducts,
   sort,
-} from "./../../features/product/productSlice";
-import { search } from "../../features/product/productSlice";
-import Asc from "../../assets/icon/svg/Asc";
-import Desc from "../../assets/icon/svg/Desc";
+} from "../../../features/product/productSlice";
+import Asc from "../../../assets/icon/svg/Asc";
+import Desc from "../../../assets/icon/svg/Desc";
 import { NavLink } from "react-router-dom";
+import { getAsyncCategories } from "../../../features/category/categorySlice";
+import { getSearchAsyncCategories } from "./../../../features/category/categorySlice";
 
 const ProductList = (props) => {
   const { products, loading, error } = useSelector((state) => state.product);
+  const { categories } = useSelector((state) => state.category);
+
   const dispatch = useDispatch();
 
   useEffect(() => {
+    dispatch(getAsyncCategories());
+    dispatch(getSearchAsyncCategories());
     dispatch(getAsyncProducts());
-    // console.log("hale");
   }, []);
 
   const [value, setValue] = useState("");
@@ -138,7 +141,7 @@ const ProductList = (props) => {
           </div>
 
           {products.map((product, index) => {
-            return <Product key={index} product={product} />;
+            return <Product key={index} product={product} categories={categories} />;
           })}
         </div>
       </div>

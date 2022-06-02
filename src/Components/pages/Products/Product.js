@@ -1,26 +1,21 @@
-import { useState } from "react";
 import { NavLink } from "react-router-dom";
-import selectOption from "./../Common/SelectedOption";
 import { useDispatch, useSelector } from "react-redux";
-import Minus from "../assets/icon/svg/Minus";
-import Trash from "../assets/icon/svg/Trash";
-import Plus from "../assets/icon/svg/Plus";
+import Minus from "../../../assets/icon/svg/Minus";
+import Trash from "../../../assets/icon/svg/Trash";
+import Plus from "../../../assets/icon/svg/Plus";
+
 import {
-  decrement,
   decrementAsyncProducts,
   deleteAsyncProducts,
-  increment,
   incrementAsyncProducts,
-  remove,
-  sort,
-} from "../features/product/productSlice";
-import Asc from "../assets/icon/svg/Asc";
-import Desc from "../assets/icon/svg/Desc";
+} from "../../../features/product/productSlice";
+import { getAsyncCategories } from "../../../features/category/categorySlice";
+import { useEffect } from "react";
 
-const Product = ({ product }) => {
-  const products = useSelector((state) => state);
+const Product = ({ product, categories }) => {
   const dispatch = useDispatch();
 
+  if (categories) console.log("cate", categories);
   return (
     <>
       <div
@@ -62,7 +57,10 @@ const Product = ({ product }) => {
               className="cursor-pointer"
               onClick={() =>
                 dispatch(
-                  decrementAsyncProducts({ id: product.id, quantity: product.quantity }),
+                  decrementAsyncProducts({
+                    id: product.id,
+                    quantity: product.quantity,
+                  }),
                 )
               }
             >
@@ -82,7 +80,7 @@ const Product = ({ product }) => {
 
         <div className="flex justify-start items-center w-3/12">
           <span>
-            <span>{selectOption.find((c) => c.value === product.category).label}</span>
+            <span>{categories.find((e) => e.id === product.category).label}</span>
           </span>
         </div>
 

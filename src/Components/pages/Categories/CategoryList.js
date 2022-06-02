@@ -1,11 +1,10 @@
 import { useSelector, useDispatch } from "react-redux";
-import Category from "./../Category";
 import { useEffect } from "react";
-import { getAsyncCategories } from "./../../features/category/categorySlice";
-import { getAsyncProducts } from "../../features/product/productSlice";
 
+import Category from "./Category";
+import { getAsyncCategories } from "../../../features/category/categorySlice";
+import { getAsyncProducts } from "../../../features/product/productSlice";
 const CategoryList = (props) => {
-  //   props.history.push("AboutUs");
   const dispatch = useDispatch();
 
   const { categories, loading, error } = useSelector((state) => state.category);
