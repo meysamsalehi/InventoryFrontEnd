@@ -7,7 +7,7 @@ import selectOption from "../../../Common/SelectedOption";
 import { addAsyncProducts } from "../../../features/product/productSlice";
 import Select from "../../../Common/Select";
 
-const ProductAdd = () => {
+const ProductAdd = ({ categories }) => {
   const product = useSelector((state) => state.product);
   const dispatch = useDispatch();
 
@@ -19,7 +19,6 @@ const ProductAdd = () => {
   };
 
   const onSubmit = (values) => {
-    // dispatch(add({ values: { ...values, id: Math.floor(Math.random() * 1000) } }));
     dispatch(
       addAsyncProducts({ values: { ...values, id: Math.floor(Math.random() * 1000) } }),
     );
@@ -94,7 +93,7 @@ const ProductAdd = () => {
               formik={formik}
               id="category"
               name="category"
-              selectOption={selectOption}
+              selectOption={categories}
             />
           </div>
         </div>

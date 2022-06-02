@@ -27,20 +27,32 @@
     {
       "id": 5,
       "title": "آنر 8",
-      "quantity": 29,
-      "category": 2
+      "quantity": 28,
+      "category": "548"
     },
     {
       "id": 761,
       "title": "شیائومی من",
-      "category": 1,
+      "category": 548,
       "quantity": 5
     },
     {
       "id": 966,
       "title": "شیائومی ردمی نوت 10  پرومکس",
       "category": 1,
-      "quantity": 5
+      "quantity": 7
+    },
+    {
+      "id": 22,
+      "title": "هندزفری گردنی",
+      "category": 548,
+      "quantity": "10"
+    },
+    {
+      "id": 582,
+      "title": "هارد ssd",
+      "category": "548",
+      "quantity": "10"
     }
   ],
   "categories": [
@@ -51,6 +63,10 @@
     {
       "id": 2,
       "label": "موبایل"
+    },
+    {
+      "id": 548,
+      "label": "لوازم جانبی"
     }
   ]
 }

@@ -12,7 +12,7 @@ const Select = ({ name, label, formik, selectOption }) => {
         <option>انتخاب کنید</option>
         {selectOption.map((options) => {
           return (
-            <option key={options.id} value={options.value}>
+            <option key={options.id} value={options.id}>
               {options.label}
             </option>
           );

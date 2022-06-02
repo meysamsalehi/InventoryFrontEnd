@@ -17,7 +17,7 @@ const CategoryList = (props) => {
 
   if (loading) return <h2>loading</h2>;
   if (error) return <h2>error</h2>;
-  else
+  if (categories && products.products)
     return (
       <div className=" border border-slate-200 rounded-lg flex flex-col justify-between items-between p-4">
         <div className=" border border-slate-200 rounded-lg flex flex-col justify-between items-between p-4 gap-y-4">

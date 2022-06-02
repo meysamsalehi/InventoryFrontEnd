@@ -75,7 +75,7 @@ const EditProduct = (props) => {
               formik={formik}
               id="category"
               name="category"
-              selectOption={selectOption}
+              selectOption={myState.categories}
             />
           </div>
         </div>
