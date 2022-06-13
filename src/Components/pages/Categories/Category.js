@@ -1,5 +1,4 @@
 import Trash from "../../../assets/icon/svg/Trash";
-import SelectedOption from "../../../Common/SelectedOption";
 
 const Category = ({ category, products }) => {
 

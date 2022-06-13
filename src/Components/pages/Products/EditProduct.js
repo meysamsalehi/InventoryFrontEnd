@@ -6,7 +6,6 @@ import Select from "../../../Common/Select";
 import SubmitBtn from "../../../Common/SubmitBnt";
 
 import { useParams, useLocation } from "react-router-dom";
-import selectOption from "../../../Common/SelectedOption";
 import { useDispatch, useSelector } from "react-redux";
 import { updateAsyncProducts } from "../../../features/product/productSlice";
 // import { update } from "../../features/product/productSlice";

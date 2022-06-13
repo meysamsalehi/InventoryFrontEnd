@@ -3,7 +3,6 @@ import SubmitBtn from "../../../Common/SubmitBnt";
 import { useFormik } from "formik";
 import * as yup from "yup";
 import { useDispatch, useSelector } from "react-redux";
-import selectOption from "../../../Common/SelectedOption";
 import Select from "../../../Common/Select";
 import { addAsyncCategories } from "../../../features/category/categorySlice";
 

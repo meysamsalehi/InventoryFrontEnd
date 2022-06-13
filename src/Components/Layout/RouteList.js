@@ -5,6 +5,7 @@ import NotFound from "./../pages/NotFound";
 import ProductList from "../pages/Products/ProductList";
 import EditProduct from "../pages/Products/EditProduct";
 import CategoryList from "../pages/Categories/CategoryList";
+import Login from "../pages/Auth/Login";
 const RouteList = [
   { id: 1, element: HomePage, path: "/", name: "صفحه اصلی" },
   { id: 2, element: ProductList, path: "/ProductList", name: "  لیست محصولات" },
@@ -18,6 +19,7 @@ const RouteList = [
   { id: 4, element: AboutUs, path: "/AboutUs", name: "درباره ما" },
   { id: 5, element: Profile, path: "/Profile", name: "پروفایل" },
   { id: 6, element: CategoryList, path: "/CategoryList", name: "دسته بندی ها" },
+  { id: 6, element: Login, path: "/Login", name: "  ورود", isShow: false },
   { id: 7, element: NotFound, path: "*", name: "404", isShow: false }, //for 404 not found
 ];
 
