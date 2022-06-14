@@ -9,10 +9,10 @@ export const addAsyncCategories = createAsyncThunk(
         "http://localhost:3001/Categories/",
         payload.values,
       );
-      console.log(respons.data);
+      // console.log(respons.data);
       return respons.data;
     } catch (error) {
-      console.log(error);
+      // console.log(error);
 
       return rejectWithValue([], error);
     }
@@ -24,10 +24,10 @@ export const getAsyncCategories = createAsyncThunk(
   async (_, { rejectWithValue }) => {
     try {
       const respons = await axios.get("http://localhost:3001/categories/");
-      console.log(respons.data);
+      // console.log(respons.data);
       return respons.data;
     } catch (error) {
-      console.log(error);
+      // console.log(error);
 
       return rejectWithValue([], error);
     }
@@ -39,10 +39,10 @@ export const getSearchAsyncCategories = createAsyncThunk(
   async (_, { rejectWithValue }) => {
     try {
       const respons = await axios.get("http://localhost:3001/categories/");
-      console.log(respons.data);
+      // console.log(respons.data);
       return respons.data;
     } catch (error) {
-      console.log(error);
+      // console.log(error);
 
       return rejectWithValue([], error);
     }
@@ -62,7 +62,7 @@ const categorySlice = createSlice({
       state.categories.push(action.payload);
     },
     [getAsyncCategories.fulfilled]: (state, action) => {
-      console.log(action.payload);
+      // console.log(action.payload);
       return { ...state, categories: action.payload, loading: false };
     },
     [getAsyncCategories.pending]: (state, action) => {

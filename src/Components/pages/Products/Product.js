@@ -12,7 +12,7 @@ import {
 
 const Product = ({ product, categories }) => {
   const dispatch = useDispatch();
-  console.log("cate_pro", categories);
+  // console.log("cate_pro", categories);
 
   if (categories)
     return (
