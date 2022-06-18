@@ -79,9 +79,9 @@ const Product = ({ product, categories }) => {
 
           <div className="flex justify-start items-center w-3/12">
             <span>
-              <span>
+              {/* <span>
                 {categories.find((e) => Number(e.id) === Number(product.category)).label}
-              </span>
+              </span> */}
               {/* {categories[0]} */}
               {/* {product.category} */}
             </span>
