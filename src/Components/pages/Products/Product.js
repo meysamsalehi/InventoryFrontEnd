@@ -90,7 +90,7 @@ const Product = ({ product, categories }) => {
           <div className="flex justify-between items-center">
             <div>
               <NavLink
-                to={`/EditProduct/${parseInt(product.id) + 1}`}
+                to={`/EditProduct/${parseInt(product.id)}`}
                 state={{ myState: { product, categories } }}
               >
                 ویرایش

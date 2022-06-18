@@ -7,4 +7,8 @@ export const store = configureStore({
     product: productSlice,
     category: categorySlice,
   },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: false,
+    }),
 });

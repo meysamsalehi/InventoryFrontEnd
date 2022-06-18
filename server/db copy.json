@@ -3,7 +3,7 @@
     {
       "id": 1,
       "title": "سامسونگ s21",
-      "quantity": 20,
+      "quantity": 18,
       "category": 1
     },
     {
@@ -27,7 +27,7 @@
     {
       "id": 5,
       "title": "آنر 8",
-      "quantity": 31,
+      "quantity": 30,
       "category": "548"
     },
     {
@@ -59,7 +59,8 @@
     {
       "id": 1,
       "label": "وب"
-    },
+    }
+    ,
     {
       "id": 2,
       "label": "موبایل"
@@ -72,5 +73,8 @@
       "id": 4,
       "label": "دسته بندی نشده "
     }
-  ]
+  ],
+"users":[
+  {"id":1 , "username":"meysam" , "password":"123456" , "rule":"admin"}
+]
 }

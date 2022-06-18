@@ -2,11 +2,19 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import _ from "lodash";
 
+const validToken =
+  "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwMDAvYXBpL2xvZ2luIiwiaWF0IjoxNjU1NTUzMjgzLCJleHAiOjE2NTU1NTY4ODMsIm5iZiI6MTY1NTU1MzI4MywianRpIjoiR2lwT3dBaUpIdDVGNnZYMiIsInN1YiI6IjEiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.gCJ5SDYsnuECSOwS7-2Gik-ctMQnNq5nTkPTlW0n4UQ";
+
 export const getAsyncProducts = createAsyncThunk(
   "products/getAsyncProducts",
   async (_, { rejectWithValue }) => {
     try {
-      const respons = await axios.get("http://localhost:3001/products/");
+      // const respons = await axios.get("http://localhost:3001/products/");
+      const respons = await axios.get("http://localhost:8000/api/products", {
+        headers: {
+          Authorization: "Bearer " + validToken,
+        },
+      });
       console.log(respons.data);
       return respons.data;
     } catch (error) {
@@ -54,12 +62,30 @@ export const incrementAsyncProducts = createAsyncThunk(
   "products/incrementAsyncProducts",
   async (payload, { rejectWithValue }) => {
     try {
-      console.log("payload", payload);
-      const response = await axios.patch(`http://localhost:3001/products/${payload.id}`, {
-        quantity: payload.quantity + 1,
-      });
+      // console.log("payload", payload);
+      // const response = await axios.patch(`http://localhost:3001/products/${payload.id}`, {
+      //   quantity: payload.quantity + 1,
+      // });
+
+      // with ;
+      const response = await axios.patch(
+        `http://localhost:8000/api/increase/${payload.id}`,
+        {
+          quantity: 1,
+          action: "plus",
+        },
+        {
+          headers: {
+            Authorization: "Bearer " + validToken,
+          },
+        },
+      );
+
+      console.log("be85868doon", response.data);
+
       return response.data;
     } catch (error) {
+      console.error("error");
       return rejectWithValue([], error);
     }
   },
@@ -242,9 +268,10 @@ const productSlice = createSlice({
     },
 
     [incrementAsyncProducts.fulfilled]: (state, action) => {
-      const selectedProduct = state.products.find((pro) => pro.id === action.payload.id);
+      const selectedProduct = state.products.find(
+        (pro) => pro.id === action.payload.data.id,
+      );
       selectedProduct.quantity++;
-      console.log("stateee", state.products);
     },
 
     [decrementAsyncProducts.fulfilled]: (state, action) => {
