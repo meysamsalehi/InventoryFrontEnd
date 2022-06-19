@@ -1,6 +1,8 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
+import { validToken } from "../product/productSlice";
+
 export const addAsyncCategories = createAsyncThunk(
   "products/addAsyncCategories",
   async (payload, { rejectWithValue }) => {
@@ -23,8 +25,18 @@ export const getAsyncCategories = createAsyncThunk(
   "categories/getAsyncCategories",
   async (_, { rejectWithValue }) => {
     try {
-      const respons = await axios.get("http://localhost:3001/categories/");
+
+      //with json server
+      // const respons = await axios.get("http://localhost:3001/categories/");
       // console.log(respons.data);
+
+
+      const respons = await axios.get("http://localhost:8000/api/categories", {
+        headers: {
+          Authorization: "Bearer " + validToken,
+        },
+      });
+
       return respons.data;
     } catch (error) {
       // console.log(error);
@@ -38,8 +50,17 @@ export const getSearchAsyncCategories = createAsyncThunk(
   "categories/getSearchAsyncCategories",
   async (_, { rejectWithValue }) => {
     try {
-      const respons = await axios.get("http://localhost:3001/categories/");
+      // with json server
+      // const respons = await axios.get("http://localhost:3001/categories/");
+
       // console.log(respons.data);
+
+
+      const respons = await axios.get("http://localhost:8000/api/categories", {
+        headers: {
+          Authorization: "Bearer " + validToken,
+        },
+      });
       return respons.data;
     } catch (error) {
       // console.log(error);

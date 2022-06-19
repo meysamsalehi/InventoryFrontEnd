@@ -2,8 +2,8 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import _ from "lodash";
 
-const validToken =
-  "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwMDAvYXBpL2xvZ2luIiwiaWF0IjoxNjU1NTU3Njg0LCJleHAiOjE2NTU1NjEyODQsIm5iZiI6MTY1NTU1NzY4NCwianRpIjoiTkg2MjMwakpLak9iYW9VSiIsInN1YiI6IjEiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.oADW_G5mARmXzBXEqoF4_B_sGN9pcWK0-EmHo_kC9UA";
+export const validToken =
+  "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwMDAvYXBpL2xvZ2luIiwiaWF0IjoxNjU1NjEyODE1LCJleHAiOjE2NTU2MTY0MTUsIm5iZiI6MTY1NTYxMjgxNSwianRpIjoiNXBzSzZEMTU3YlZhM2ZGOCIsInN1YiI6IjEiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.rR3lY2LkuGR6q4k7DYNuhWn64UPq7UBZ6gyXiX3D8EY";
 
 export const getAsyncProducts = createAsyncThunk(
   "products/getAsyncProducts",
@@ -17,11 +17,8 @@ export const getAsyncProducts = createAsyncThunk(
           Authorization: "Bearer " + validToken,
         },
       });
-      console.log(respons.data);
       return respons.data;
     } catch (error) {
-      console.log(error);
-
       return rejectWithValue([], error);
     }
   },
@@ -54,13 +51,29 @@ export const updateAsyncProducts = createAsyncThunk(
   "products/updateAsyncProducts",
   async (payload, { rejectWithValue }) => {
     try {
-      // console.log("payload", payload);
-      const response = await axios.patch(`http://localhost:3001/products/${payload.id}`, {
-        id: payload.id,
-        title: payload.values.title,
-        quantity: payload.values.quantity,
-        category: payload.values.category,
-      });
+      // with json server
+      // const response = await axios.patch(`http://localhost:3001/products/${payload.id}`, {
+      //   id: payload.id,
+      //   title: payload.values.title,
+      //   quantity: payload.values.quantity,
+      //   category: payload.values.category,
+      // });
+
+      const response = await axios.patch(
+        `http://localhost:8000/api/update/${payload.id}`,
+        {
+          id: payload.id,
+          title: payload.values.title,
+          quantity: payload.values.quantity,
+          category: payload.values.category,
+        },
+        {
+          headers: {
+            Authorization: "Bearer " + validToken,
+          },
+        },
+      );
+
       return response.data;
     } catch (error) {
       return rejectWithValue([], error);
@@ -132,8 +145,14 @@ export const getSearchAsyncProducts = createAsyncThunk(
   "products/getSearchAsyncProducts",
   async (_, { rejectWithValue }) => {
     try {
-      const respons = await axios.get("http://localhost:3001/products/");
-      console.log(respons.data);
+      //with json server
+      // const respons = await axios.get("http://localhost:3001/products/");
+
+      const respons = await axios.get("http://localhost:8000/api/products", {
+        headers: {
+          Authorization: "Bearer " + validToken,
+        },
+      });
       return respons.data;
     } catch (error) {
       console.log(error);
@@ -147,7 +166,18 @@ export const deleteAsyncProducts = createAsyncThunk(
   "todos/deleteAsyncProducts",
   async (payload, { rejectWithValue }) => {
     try {
-      const response = await axios.delete(`http://localhost:3001/products/${payload.id}`);
+      //with json server
+      // const response = await axios.delete(`http://localhost:3001/products/${payload.id}`);
+      // return { id: payload.id };
+
+      const response = await axios.delete(
+        `http://localhost:8000/api/delete/${payload.id}`,
+        {
+          headers: {
+            Authorization: "Bearer " + validToken,
+          },
+        },
+      );
       return { id: payload.id };
     } catch (error) {
       return rejectWithValue([], error);
@@ -257,7 +287,6 @@ const productSlice = createSlice({
   // },
   extraReducers: {
     [getAsyncProducts.fulfilled]: (state, action) => {
-      console.log(action.payload);
       return {
         ...state,
         products: _.orderBy(action.payload, ["title"], ["asc"]),
@@ -279,14 +308,17 @@ const productSlice = createSlice({
       state.products.push(action.payload);
     },
     [updateAsyncProducts.fulfilled]: (state, action) => {
-      const indexChange = state.products.findIndex((p) => p.id === action.payload.id);
+      console.log(action.payload.data);
+      const indexChange = state.products.findIndex(
+        (p) => p.id === action.payload.data.id,
+      );
       const productChange = { ...state[indexChange] };
-      productChange.title = action.payload.values.title;
-      productChange.quantity = action.payload.values.quantity;
-      productChange.category = action.payload.values.category;
-      const productUpdatedChange = [...state];
-      productUpdatedChange[indexChange] = productChange;
-      return productUpdatedChange;
+      productChange.title = action.payload.data.title;
+      productChange.quantity = action.payload.data.quantity;
+      productChange.category = action.payload.data.category;
+      // const productUpdatedChange = [...state];
+      // productUpdatedChange[indexChange] = productChange;
+      // return productUpdatedChange;
     },
 
     [incrementAsyncProducts.fulfilled]: (state, action) => {
@@ -304,7 +336,6 @@ const productSlice = createSlice({
     },
     [getSearchAsyncProducts.fulfilled]: (state, action) => {
       const value = action.meta.arg.event;
-
       if (value == "") {
         return { ...state, products: action.payload, loading: false };
       } else {
@@ -316,6 +347,7 @@ const productSlice = createSlice({
       }
     },
     [deleteAsyncProducts.fulfilled]: (state, action) => {
+      console.log(action);
       state.products = state.products.filter((pro) => pro.id != action.payload.id);
     },
   },
