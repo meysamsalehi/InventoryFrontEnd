@@ -2,8 +2,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import _ from "lodash";
 
-export const validToken =
-  "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwMDAvYXBpL2xvZ2luIiwiaWF0IjoxNjU1NjEyODE1LCJleHAiOjE2NTU2MTY0MTUsIm5iZiI6MTY1NTYxMjgxNSwianRpIjoiNXBzSzZEMTU3YlZhM2ZGOCIsInN1YiI6IjEiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.rR3lY2LkuGR6q4k7DYNuhWn64UPq7UBZ6gyXiX3D8EY";
+export const validToken = JSON.parse(localStorage.getItem("authKey"));
 
 export const getAsyncProducts = createAsyncThunk(
   "products/getAsyncProducts",
@@ -17,6 +16,7 @@ export const getAsyncProducts = createAsyncThunk(
           Authorization: "Bearer " + validToken,
         },
       });
+
       return respons.data;
     } catch (error) {
       return rejectWithValue([], error);
@@ -287,6 +287,7 @@ const productSlice = createSlice({
   // },
   extraReducers: {
     [getAsyncProducts.fulfilled]: (state, action) => {
+      // console.log(action);
       return {
         ...state,
         products: _.orderBy(action.payload, ["title"], ["asc"]),
@@ -308,7 +309,7 @@ const productSlice = createSlice({
       state.products.push(action.payload);
     },
     [updateAsyncProducts.fulfilled]: (state, action) => {
-      console.log(action.payload.data);
+      // console.log(action.payload.data);
       const indexChange = state.products.findIndex(
         (p) => p.id === action.payload.data.id,
       );
@@ -347,7 +348,7 @@ const productSlice = createSlice({
       }
     },
     [deleteAsyncProducts.fulfilled]: (state, action) => {
-      console.log(action);
+      // console.log(action);
       state.products = state.products.filter((pro) => pro.id != action.payload.id);
     },
   },

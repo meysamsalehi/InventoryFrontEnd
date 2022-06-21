@@ -7,10 +7,24 @@ export const addAsyncCategories = createAsyncThunk(
   "products/addAsyncCategories",
   async (payload, { rejectWithValue }) => {
     try {
+      // with json server
+      // const respons = await axios.post(
+      //   "http://localhost:3001/Categories/",
+      //   payload.values,
+      // );
+
+
+
       const respons = await axios.post(
-        "http://localhost:3001/Categories/",
+        "http://localhost:8000/api/createCategory/",
         payload.values,
+        {
+          headers: {
+            Authorization: "Bearer " + validToken,
+          },
+        },
       );
+
       // console.log(respons.data);
       return respons.data;
     } catch (error) {

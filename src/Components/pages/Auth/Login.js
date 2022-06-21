@@ -3,8 +3,13 @@ import Input from "./../../../Common/Input";
 import { useFormik } from "formik";
 import * as yup from "yup";
 import SubmitBtn from "./../../../Common/SubmitBnt";
-
+import { useState, useEffect } from "react";
+import { loginAsync } from "../../../features/auth/authSlice";
+import { useDispatch } from "react-redux";
+import { Navigate } from "react-router-dom";
 const Login = () => {
+  const dispatch = useDispatch();
+
   const initialValuesFormik = {
     userName: "",
     password: "",
@@ -19,9 +24,7 @@ const Login = () => {
   });
 
   const onSubmit = (values) => {
-    // dispatch(
-    //   addAsyncProducts({ values: { ...values, id: Math.floor(Math.random() * 1000) } }),
-    // );
+    dispatch(loginAsync({ username: values.userName, password: values.password }));
     formik.resetForm();
   };
 
@@ -33,45 +36,49 @@ const Login = () => {
   });
 
   return (
-    <form className="m-auto flex justify-center p-10 " onSubmit={formik.handleSubmit}>
-      <div className="bg-white border border-slate-200 rounded-lg w-96 max-h-screen m-10">
-        <div className="mx-auto my-4 flex flex-col justify-center items-center">
-          <Logo />
-        </div>
-        <span className="flex flex-rw justify-start items-center mx-3 font-extrabold text-md">
-          ورود | ثبت نام
-        </span>
+    <>
+      {/* {<Navigate to="/HomePage" />} */}
 
-        <div className="flex flex-col justify-center items-center mx-4 mt-8">
-          <div className="w-full mb-4">
-            <Input label="نام کاربری " formik={formik} id="userName" name="userName" />
+      <form className="m-auto flex justify-center p-10 " onSubmit={formik.handleSubmit}>
+        <div className="bg-white border border-slate-200 rounded-lg w-96 max-h-screen m-10">
+          <div className="mx-auto my-4 flex flex-col justify-center items-center">
+            <Logo />
           </div>
-
-          <div className="w-full mb-4">
-            <Input
-              label="رمز عبور  "
-              formik={formik}
-              id="password"
-              name="password"
-              type="password"
-            />
-          </div>
-
-          <SubmitBtn isValid={!formik.isValid} />
-
-          <button
-            type="reset"
-            onClick={(e) => formik.resetForm()}
-            className="bg-rose-500  border-0 py-2 px-20 rounded-xl text-white w-full"
-          >
-            لفو
-          </button>
-          <span className="text-xs my-4">
-            ورود شما به معنای پذیرش شرایط و قوانین حریم ‌خصوصی است
+          <span className="flex flex-rw justify-start items-center mx-3 font-extrabold text-md">
+            ورود | ثبت نام
           </span>
+
+          <div className="flex flex-col justify-center items-center mx-4 mt-8">
+            <div className="w-full mb-4">
+              <Input label="نام کاربری " formik={formik} id="userName" name="userName" />
+            </div>
+
+            <div className="w-full mb-4">
+              <Input
+                label="رمز عبور  "
+                formik={formik}
+                id="password"
+                name="password"
+                type="password"
+              />
+            </div>
+
+            <SubmitBtn isValid={!formik.isValid} />
+
+            <button
+              type="reset"
+              onClick={(e) => formik.resetForm()}
+              className="bg-rose-500  border-0 py-2 px-20 rounded-xl text-white w-full"
+            >
+              لفو
+            </button>
+            <span className="text-xs my-4">
+              ورود شما به معنای پذیرش شرایط و قوانین حریم ‌خصوصی است
+            </span>
+          </div>
         </div>
-      </div>
-    </form>
+      </form>
+    </>
   );
 };
 
